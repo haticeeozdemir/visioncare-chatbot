@@ -1,0 +1,73 @@
+{
+  "version": "messages-v0.1-draft",
+  "note": "Fixed texts. The AI model never rewrites them. EN from Clinical Review Pack section 3; TR from the Turkish tab; EL drafts for the Greek team to review.",
+  "levels": {
+    "EMERGENCY": {
+      "en": "Your answers include a sign that may need emergency care. Please get help now: call 112 or go to the nearest emergency department. This chat cannot examine your eyes.",
+      "tr": "Cevaplarınızda acil bakım gerektirebilecek bir belirti var. Lütfen hemen yardım alın: 112'yi arayın ya da en yakın acil servise gidin. Bu sohbet gözlerinizi muayene edemez.",
+      "el": "Οι απαντήσεις σας περιλαμβάνουν ένα σημάδι που μπορεί να χρειάζεται επείγουσα φροντίδα. Ζητήστε βοήθεια τώρα: καλέστε το 112 ή πηγαίνετε στο πλησιέστερο τμήμα επειγόντων. Αυτή η συνομιλία δεν μπορεί να εξετάσει τα μάτια σας."
+    },
+    "SAME_DAY": {
+      "en": "Your symptoms may need to be checked by an eye doctor today. Please contact an eye clinic or emergency service today. If your vision suddenly gets worse, call 112.",
+      "tr": "Belirtilerinizin bugün bir göz hekimi tarafından değerlendirilmesi gerekebilir. Lütfen bugün bir göz kliniğine ya da acil servise başvurun. Görmeniz aniden kötüleşirse 112'yi arayın.",
+      "el": "Τα συμπτώματά σας μπορεί να χρειάζεται να ελεγχθούν από οφθαλμίατρο σήμερα. Επικοινωνήστε σήμερα με οφθαλμολογική κλινική ή υπηρεσία επειγόντων. Αν η όρασή σας χειροτερέψει ξαφνικά, καλέστε το 112."
+    },
+    "APPOINTMENT": {
+      "en": "It may be helpful to have your eyes checked by an eye doctor. Please book an appointment. If you notice sudden vision loss, a shadow or curtain, new flashes or floaters, or severe pain, seek emergency care.",
+      "tr": "Gözlerinizi bir göz hekimine kontrol ettirmeniz faydalı olabilir. Lütfen randevu alın. Ani görme kaybı, perde ya da gölge, yeni ışık çakmaları ya da uçuşmalar veya şiddetli ağrı olursa acil yardım alın.",
+      "el": "Μπορεί να είναι χρήσιμο να ελέγξει τα μάτια σας ένας οφθαλμίατρος. Κλείστε ένα ραντεβού. Αν παρατηρήσετε ξαφνική απώλεια όρασης, σκιά ή κουρτίνα, νέες λάμψεις ή «μυγάκια» ή έντονο πόνο, ζητήστε επείγουσα βοήθεια."
+    },
+    "INFO": {
+      "en": "This information is general and is not a diagnosis. If symptoms start or get worse, contact an eye doctor.",
+      "tr": "Bu bilgi geneldir ve teşhis değildir. Belirtiler başlarsa ya da kötüleşirse bir göz hekimine başvurun.",
+      "el": "Αυτές οι πληροφορίες είναι γενικές και δεν αποτελούν διάγνωση. Αν εμφανιστούν ή χειροτερέψουν συμπτώματα, επικοινωνήστε με οφθαλμίατρο."
+    }
+  },
+  "support": {
+    "start": {
+      "en": "This assistant gives general eye health information. It does not diagnose and does not replace emergency care. If you have sudden vision loss, call 112.",
+      "tr": "Bu asistan genel göz sağlığı bilgisi verir. Teşhis koymaz ve acil bakımın yerini tutmaz. Ani görme kaybınız varsa 112'yi arayın.",
+      "el": "Αυτός ο βοηθός δίνει γενικές πληροφορίες για την υγεία των ματιών. Δεν κάνει διάγνωση και δεν αντικαθιστά την επείγουσα φροντίδα. Αν έχετε ξαφνική απώλεια όρασης, καλέστε το 112."
+    },
+    "topics_heading": {
+      "en": "Topics your doctor may consider. This is not a diagnosis.",
+      "tr": "Doktorunuzun değerlendirebileceği konular. Bu bir teşhis değildir.",
+      "el": "Θέματα που μπορεί να εξετάσει ο γιατρός σας. Δεν πρόκειται για διάγνωση."
+    },
+    "no_match": {
+      "en": "We can't point to specific topics for these answers. An eye doctor can examine you and explain the cause.",
+      "tr": "Bu cevaplar için belirli konular gösteremiyoruz. Bir göz hekimi sizi muayene edip nedenini açıklayabilir.",
+      "el": "Δεν μπορούμε να προτείνουμε συγκεκριμένα θέματα για αυτές τις απαντήσεις. Ένας οφθαλμίατρος μπορεί να σας εξετάσει και να εξηγήσει την αιτία."
+    },
+    "no_source": {
+      "en": "I don't have approved information on this. Please ask an eye doctor.",
+      "tr": "Bu konuda onaylı bilgim yok. Lütfen bir göz hekimine danışın.",
+      "el": "Δεν έχω εγκεκριμένες πληροφορίες για αυτό. Ρωτήστε έναν οφθαλμίατρο."
+    },
+    "warning_signs": {
+      "en": "Seek emergency care if you notice: sudden vision loss, a shadow or curtain, new flashes with floaters, an eye injury or chemical, or severe pain.",
+      "tr": "Şunlardan birini fark ederseniz acil yardım alın: ani görme kaybı, perde ya da gölge, uçuşmalarla birlikte yeni ışık çakmaları, göz yaralanması ya da kimyasal, şiddetli ağrı.",
+      "el": "Ζητήστε επείγουσα βοήθεια αν παρατηρήσετε: ξαφνική απώλεια όρασης, σκιά ή κουρτίνα, νέες λάμψεις με «μυγάκια», τραυματισμό ή χημικό στο μάτι, ή έντονο πόνο."
+    },
+    "no_diagnosis": {
+      "en": "I can't tell you which condition you have or give chances in percent. Only an eye doctor can examine you and make a diagnosis.",
+      "tr": "Hangi hastalığınız olduğunu söyleyemem ve yüzde olarak ihtimal veremem. Sadece bir göz hekimi sizi muayene edip teşhis koyabilir.",
+      "el": "Δεν μπορώ να σας πω ποια πάθηση έχετε ούτε να δώσω πιθανότητες σε ποσοστό. Μόνο ένας οφθαλμίατρος μπορεί να σας εξετάσει και να κάνει διάγνωση."
+    },
+    "no_medicine": {
+      "en": "I can't recommend medicines, eye drops or treatments. Please ask an eye doctor or pharmacist.",
+      "tr": "İlaç, göz damlası ya da tedavi öneremem. Lütfen bir göz hekimine ya da eczacıya danışın.",
+      "el": "Δεν μπορώ να προτείνω φάρμακα, κολλύρια ή θεραπείες. Ρωτήστε έναν οφθαλμίατρο ή φαρμακοποιό."
+    },
+    "no_reassurance": {
+      "en": "I can't say whether this is serious. An eye doctor can check it properly.",
+      "tr": "Bunun ciddi olup olmadığını söyleyemem. Bir göz hekimi bunu doğru şekilde kontrol edebilir.",
+      "el": "Δεν μπορώ να πω αν είναι σοβαρό. Ένας οφθαλμίατρος μπορεί να το ελέγξει σωστά."
+    },
+    "confirm_unclear": {
+      "en": "I'm not sure I understood. Please pick one of the options.",
+      "tr": "Tam anlayamadım. Lütfen seçeneklerden birini seçin.",
+      "el": "Δεν είμαι σίγουρος ότι κατάλαβα. Επιλέξτε μία από τις επιλογές."
+    }
+  }
+}

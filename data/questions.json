@@ -1,0 +1,97 @@
+{
+  "version": "questions-v0.1-draft",
+  "note": "Source: Clinical Review Pack section 1. EL texts are drafts for the Greek team to review.",
+  "questions": [
+    {
+      "id": "Q1", "field": "age_group", "type": "single", "skippable": false,
+      "text": {"en": "Who is this check for?", "tr": "Bu kontrol kimin için?", "el": "Για ποιον είναι αυτός ο έλεγχος;"},
+      "options": [
+        {"code": "preschool", "label": {"en": "Preschool child (0–6)", "tr": "Okul öncesi çocuk (0–6)", "el": "Παιδί προσχολικής ηλικίας (0–6)"}},
+        {"code": "school_age", "label": {"en": "School-age child (7–17)", "tr": "Okul çağı çocuk (7–17)", "el": "Παιδί σχολικής ηλικίας (7–17)"}},
+        {"code": "adult", "label": {"en": "Adult (18–64)", "tr": "Yetişkin (18–64)", "el": "Ενήλικας (18–64)"}},
+        {"code": "older_adult", "label": {"en": "Adult 65+", "tr": "65 yaş üstü", "el": "Ενήλικας 65+"}}
+      ]
+    },
+    {
+      "id": "Q2", "field": "main_concern", "type": "single", "skippable": false,
+      "text": {"en": "What is the main problem?", "tr": "Ana sorun nedir?", "el": "Ποιο είναι το κύριο πρόβλημα;"},
+      "parent_text": {"en": "What have you noticed about your child's eyes?", "tr": "Çocuğunuzun gözlerinde ne fark ettiniz?", "el": "Τι έχετε παρατηρήσει στα μάτια του παιδιού σας;"},
+      "options": [
+        {"code": "blurred", "label": {"en": "Blurred or reduced vision", "tr": "Bulanık ya da azalmış görme", "el": "Θολή ή μειωμένη όραση"}},
+        {"code": "sudden_loss", "label": {"en": "Sudden loss of vision", "tr": "Ani görme kaybı", "el": "Ξαφνική απώλεια όρασης"}},
+        {"code": "curtain", "label": {"en": "Shadow or curtain in vision", "tr": "Görmede gölge ya da perde", "el": "Σκιά ή κουρτίνα στην όραση"}},
+        {"code": "flashes_floaters", "label": {"en": "Flashes or new floaters", "tr": "Işık çakmaları ya da yeni uçuşmalar", "el": "Λάμψεις ή νέα «μυγάκια»"}},
+        {"code": "double", "label": {"en": "Double vision", "tr": "Çift görme", "el": "Διπλωπία"}},
+        {"code": "pain", "label": {"en": "Eye pain", "tr": "Göz ağrısı", "el": "Πόνος στο μάτι"}},
+        {"code": "red", "label": {"en": "Red eye", "tr": "Kızarıklık", "el": "Κόκκινο μάτι"}},
+        {"code": "trauma_chemical", "label": {"en": "Eye injury or chemical in the eye", "tr": "Göz yaralanması ya da göze kimyasal kaçması", "el": "Τραυματισμός ή χημικό στο μάτι"}},
+        {"code": "other", "label": {"en": "Other", "tr": "Diğer", "el": "Άλλο"}}
+      ],
+      "child_only_options": [
+        {"code": "eye_turn", "label": {"en": "Eye turns in or out", "tr": "Göz içe ya da dışa kayıyor", "el": "Το μάτι στραβίζει μέσα ή έξω"}},
+        {"code": "white_pupil", "label": {"en": "White reflection in the pupil (e.g. in photos)", "tr": "Gözbebeğinde beyaz yansıma (örn. fotoğraflarda)", "el": "Λευκή αντανάκλαση στην κόρη (π.χ. σε φωτογραφίες)"}},
+        {"code": "behaviour_signs", "label": {"en": "Squints, sits close to screens, tilts head", "tr": "Gözlerini kısıyor, ekrana yakın oturuyor, başını eğiyor", "el": "Μισοκλείνει τα μάτια, κάθεται κοντά στην οθόνη, γέρνει το κεφάλι"}}
+      ]
+    },
+    {
+      "id": "Q3", "field": "onset", "type": "single", "skippable": true,
+      "text": {"en": "How did it start?", "tr": "Nasıl başladı?", "el": "Πώς ξεκίνησε;"},
+      "options": [
+        {"code": "sudden", "label": {"en": "Suddenly (minutes or hours)", "tr": "Aniden (dakikalar ya da saatler içinde)", "el": "Ξαφνικά (λεπτά ή ώρες)"}},
+        {"code": "days", "label": {"en": "Over a few days", "tr": "Birkaç gün içinde", "el": "Μέσα σε λίγες μέρες"}},
+        {"code": "gradual", "label": {"en": "Slowly (weeks or months)", "tr": "Yavaş yavaş (haftalar ya da aylar)", "el": "Σταδιακά (εβδομάδες ή μήνες)"}},
+        {"code": "longstanding", "label": {"en": "Has been there a long time", "tr": "Uzun süredir var", "el": "Υπάρχει εδώ και πολύ καιρό"}},
+        {"code": "unknown", "label": {"en": "Not sure", "tr": "Emin değilim", "el": "Δεν είμαι σίγουρος/η"}}
+      ]
+    },
+    {
+      "id": "Q4", "field": "duration", "type": "single", "skippable": true,
+      "text": {"en": "How long has it lasted?", "tr": "Ne kadar süredir var?", "el": "Πόσο καιρό διαρκεί;"},
+      "options": [
+        {"code": "lt_24h", "label": {"en": "Under 24 hours", "tr": "24 saatten az", "el": "Λιγότερο από 24 ώρες"}},
+        {"code": "1_7d", "label": {"en": "1–7 days", "tr": "1–7 gün", "el": "1–7 ημέρες"}},
+        {"code": "1_4w", "label": {"en": "1–4 weeks", "tr": "1–4 hafta", "el": "1–4 εβδομάδες"}},
+        {"code": "gt_1m", "label": {"en": "Over 1 month", "tr": "1 aydan fazla", "el": "Πάνω από 1 μήνα"}}
+      ]
+    },
+    {
+      "id": "Q4b", "field": "course", "type": "single", "skippable": true,
+      "text": {"en": "Is it changing?", "tr": "Değişiyor mu?", "el": "Αλλάζει;"},
+      "options": [
+        {"code": "worse", "label": {"en": "Getting worse", "tr": "Kötüleşiyor", "el": "Χειροτερεύει"}},
+        {"code": "stable", "label": {"en": "Stable", "tr": "Sabit", "el": "Σταθερό"}},
+        {"code": "intermittent", "label": {"en": "Comes and goes", "tr": "Gelip geçiyor", "el": "Έρχεται και φεύγει"}}
+      ]
+    },
+    {
+      "id": "Q5", "field": "associated", "type": "multi", "skippable": true,
+      "text": {"en": "Do you have any of these as well?", "tr": "Bunlardan biri de var mı?", "el": "Έχετε και κάποιο από αυτά;"},
+      "options": [
+        {"code": "one_eye", "label": {"en": "Only one eye", "tr": "Sadece tek göz", "el": "Μόνο στο ένα μάτι"}},
+        {"code": "both_eyes", "label": {"en": "Both eyes", "tr": "İki göz", "el": "Και στα δύο μάτια"}},
+        {"code": "pain", "label": {"en": "Pain", "tr": "Ağrı", "el": "Πόνος"}},
+        {"code": "severe_pain", "label": {"en": "Severe pain", "tr": "Şiddetli ağrı", "el": "Έντονος πόνος"}},
+        {"code": "redness", "label": {"en": "Redness", "tr": "Kızarıklık", "el": "Κοκκινίλα"}},
+        {"code": "light_sensitivity", "label": {"en": "Light sensitivity", "tr": "Işığa hassasiyet", "el": "Ευαισθησία στο φως"}},
+        {"code": "new_flashes", "label": {"en": "New flashes", "tr": "Yeni ışık çakmaları", "el": "Νέες λάμψεις"}},
+        {"code": "new_floaters", "label": {"en": "New floaters", "tr": "Yeni uçuşmalar", "el": "Νέα «μυγάκια»"}},
+        {"code": "headache", "label": {"en": "Headache", "tr": "Baş ağrısı", "el": "Πονοκέφαλος"}},
+        {"code": "recent_injury", "label": {"en": "Recent injury", "tr": "Yakın zamanda yaralanma", "el": "Πρόσφατος τραυματισμός"}},
+        {"code": "none", "label": {"en": "None", "tr": "Hiçbiri", "el": "Κανένα"}}
+      ]
+    },
+    {
+      "id": "Q6", "field": "history", "type": "multi", "skippable": true,
+      "text": {"en": "Any of these in your history? (optional)", "tr": "Geçmişinizde bunlardan biri var mı? (isteğe bağlı)", "el": "Υπάρχει κάτι από αυτά στο ιστορικό σας; (προαιρετικό)"},
+      "options": [
+        {"code": "eye_disease", "label": {"en": "Known eye disease", "tr": "Bilinen göz hastalığı", "el": "Γνωστή πάθηση ματιών"}},
+        {"code": "eye_surgery", "label": {"en": "Eye surgery", "tr": "Göz ameliyatı", "el": "Χειρουργείο ματιών"}},
+        {"code": "diabetes", "label": {"en": "Diabetes", "tr": "Diyabet", "el": "Διαβήτης"}},
+        {"code": "glasses", "label": {"en": "Glasses or contact lenses", "tr": "Gözlük ya da lens", "el": "Γυαλιά ή φακοί επαφής"}},
+        {"code": "high_myopia", "label": {"en": "Very high short-sightedness", "tr": "Çok yüksek miyopi", "el": "Πολύ υψηλή μυωπία"}},
+        {"code": "none", "label": {"en": "None", "tr": "Hiçbiri", "el": "Κανένα"}},
+        {"code": "prefer_not", "label": {"en": "Prefer not to say", "tr": "Söylemek istemiyorum", "el": "Προτιμώ να μην πω"}}
+      ]
+    }
+  ]
+}

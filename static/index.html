@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VisionCare Assistant (demo)</title>
+<style>
+  :root { --bg:#f4f6f8; --card:#fff; --ink:#1b2430; --muted:#5b6675; --brand:#0f6e8c; --brand-ink:#fff;
+          --line:#dde3ea; --emerg:#b42318; --emerg-bg:#fdecea; --same:#b54708; --same-bg:#fff4e5;
+          --appt:#0f6e8c; --appt-bg:#e7f4f8; --info:#475467; --info-bg:#f2f4f7; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header { background:var(--brand); color:var(--brand-ink); padding:14px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0; flex:1; min-width:180px; }
+  header select { font:inherit; padding:4px 8px; border-radius:8px; border:0; }
+  .badge-demo { font-size:12px; background:#ffffff33; padding:2px 8px; border-radius:999px; }
+  main { max-width:720px; margin:0 auto; padding:16px; display:flex; flex-direction:column; gap:12px; min-height:calc(100vh - 140px); }
+  .msg { max-width:88%; padding:10px 14px; border-radius:14px; background:var(--card); border:1px solid var(--line); white-space:pre-line; }
+  .bot { align-self:flex-start; }
+  .user { align-self:flex-end; background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+  .notice { align-self:flex-start; color:var(--muted); font-size:14px; }
+  .opts { display:flex; flex-wrap:wrap; gap:8px; align-self:flex-start; max-width:100%; }
+  .opts button { font:inherit; padding:8px 12px; border-radius:999px; border:1px solid var(--brand); background:#fff; color:var(--brand); cursor:pointer; }
+  .opts button.on { background:var(--brand); color:#fff; }
+  .opts button.ghost { border-color:var(--line); color:var(--muted); }
+  .result { border-radius:14px; padding:16px; border:1px solid var(--line); background:var(--card); }
+  .level { display:inline-block; font-weight:700; font-size:13px; padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+  .EMERGENCY { color:var(--emerg); background:var(--emerg-bg); } .SAME_DAY { color:var(--same); background:var(--same-bg); }
+  .APPOINTMENT { color:var(--appt); background:var(--appt-bg); } .INFO { color:var(--info); background:var(--info-bg); }
+  .result.emerg { border:2px solid var(--emerg); background:var(--emerg-bg); }
+  .call { display:inline-block; margin-top:10px; background:var(--emerg); color:#fff; font-weight:700; font-size:20px; padding:10px 22px; border-radius:12px; text-decoration:none; }
+  .cards { display:grid; gap:8px; margin-top:8px; }
+  .card { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:#fbfcfd; }
+  .card h4 { margin:0 0 4px; font-size:15px; } .card p { margin:2px 0; font-size:14px; color:var(--muted); }
+  .small { font-size:13px; color:var(--muted); }
+  form { position:sticky; bottom:0; background:var(--bg); padding:12px 16px 16px; display:flex; gap:8px; max-width:720px; margin:0 auto; }
+  form input { flex:1; font:inherit; padding:10px 12px; border-radius:12px; border:1px solid var(--line); min-width:0; }
+  form button { font:inherit; padding:10px 16px; border-radius:12px; border:0; background:var(--brand); color:#fff; cursor:pointer; }
+  a { color:var(--brand); }
+</style>
+</head>
+<body>
+<header>
+  <h1>VisionCare Assistant <span class="badge-demo" id="mode"></span></h1>
+  <select id="lang" aria-label="Language"><option value="en">English</option><option value="tr">Türkçe</option><option value="el">Ελληνικά</option></select>
+  <select id="country" aria-label="Country"><option value="TR">Türkiye</option><option value="GR">Greece</option></select>
+</header>
+<main id="chat" aria-live="polite"></main>
+<form id="form"><input id="text" autocomplete="off"><button id="send">→</button></form>
+<script>
+const UI = {
+  en:{ph:"Type in your own words…",cont:"Continue",skip:"Skip",ask:"You can now ask a question about eye health.",call:"Call",book:"Book an appointment",docq:"Questions for your doctor",draft:"Demo — clinical content awaiting doctor approval",restart:"Start again"},
+  tr:{ph:"Kendi cümlenizle yazın…",cont:"Devam",skip:"Atla",ask:"Şimdi göz sağlığıyla ilgili bir soru sorabilirsiniz.",call:"Ara",book:"Randevu al",docq:"Doktorunuza sorabilecekleriniz",draft:"Demo — klinik içerik doktor onayı bekliyor",restart:"Yeniden başla"},
+  el:{ph:"Γράψτε με δικά σας λόγια…",cont:"Συνέχεια",skip:"Παράλειψη",ask:"Μπορείτε τώρα να κάνετε μια ερώτηση για την υγεία των ματιών.",call:"Κλήση",book:"Κλείστε ραντεβού",docq:"Ερωτήσεις για τον γιατρό σας",draft:"Demo — το κλινικό περιεχόμενο περιμένει έγκριση γιατρού",restart:"Από την αρχή"}
+};
+const $ = s => document.querySelector(s), chat = $("#chat");
+let sid = null, current = null, finished = false, picked = new Set();
+const lang = () => $("#lang").value, t = k => UI[lang()][k];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function add(html, cls="msg bot") { const d=document.createElement("div"); d.className=cls; d.innerHTML=html; chat.appendChild(d); d.scrollIntoView({behavior:"smooth",block:"end"}); return d; }
+async function api(path, body) { const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body||{})}); return r.json(); }
+
+async function start() {
+  chat.innerHTML=""; finished=false; $("#text").placeholder=t("ph");
+  const r = await api("/api/v1/assessment/sessions", {language:lang(), country:$("#country").value});
+  sid = r.session_id; $("#mode").textContent = r.llm_enabled ? "Claude" : "keyword mode";
+  add(`<span class="small">${esc(t("draft"))}</span>`, "notice");
+  add(esc(r.intro)); handle(r);
+}
+
+function handle(r) {
+  document.querySelectorAll(".opts").forEach(o=>o.remove());
+  if (r.notice) add(esc(r.notice), "notice");
+  if (r.status !== "in_progress") return showResult(r.result);
+  current = r.question; picked = new Set();
+  add(esc(current.text));
+  const box = add("", "opts");
+  current.options.forEach(o => {
+    const b=document.createElement("button"); b.type="button"; b.textContent=o.label;
+    b.onclick = () => {
+      if (current.type==="multi") { picked.has(o.code)?picked.delete(o.code):picked.add(o.code); b.classList.toggle("on"); }
+      else send([o.code], null, o.label);
+    };
+    box.appendChild(b);
+  });
+  if (current.type==="multi") { const c=document.createElement("button"); c.type="button"; c.className="on"; c.textContent=t("cont");
+    c.onclick=()=>{ const labels=current.options.filter(o=>picked.has(o.code)).map(o=>o.label).join(", "); send([...picked], null, labels||t("skip")); }; box.appendChild(c); }
+  if (current.skippable) { const s=document.createElement("button"); s.type="button"; s.className="ghost"; s.textContent=t("skip"); s.onclick=()=>send(null,null,t("skip")); box.appendChild(s); }
+}
+
+async function send(codes, text, shown) {
+  add(esc(shown ?? text), "msg user");
+  handle(await api(`/api/v1/assessment/sessions/${sid}/answers`, {question_id: current.id, answer_codes: codes, free_text: text}));
+}
+
+function showResult(res) {
+  finished = true;
+  const lv = res.safety.urgency_level, emerg = lv==="EMERGENCY";
+  const LV = {en:{EMERGENCY:"Emergency",SAME_DAY:"Today",APPOINTMENT:"Book an appointment",INFO:"Information"},
+              tr:{EMERGENCY:"Acil",SAME_DAY:"Bugün",APPOINTMENT:"Randevu alın",INFO:"Bilgi"},
+              el:{EMERGENCY:"Επείγον",SAME_DAY:"Σήμερα",APPOINTMENT:"Κλείστε ραντεβού",INFO:"Πληροφορίες"}};
+  let h = `<span class="level ${lv}">${esc(LV[lang()][lv])}</span><div>${esc(res.message)}</div>`;
+  if (emerg) h += `<a class="call" href="tel:${esc(res.next_step.number)}">${esc(t("call"))} ${esc(res.next_step.number)}</a>`;
+  if (res.information) {
+    h += `<p><b>${esc(res.information.heading)}</b></p><div class="cards">` + res.information.cards.map(c =>
+      `<div class="card"><h4>${esc(c.title)}</h4><p>${esc(c.what)}</p><p>${esc(c.when_to_get_help)}</p></div>`).join("") + `</div>`;
+  }
+  if (res.warning_signs) h += `<p class="small">⚠ ${esc(res.warning_signs)}</p>`;
+  if (res.next_step?.appointment_links) {
+    h += `<p><b>${esc(t("book"))}:</b> ` + res.next_step.appointment_links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`).join(" · ") + `</p>`;
+    if (res.next_step.questions_for_doctor.length) h += `<p><b>${esc(t("docq"))}:</b></p><ul>` + res.next_step.questions_for_doctor.map(q=>`<li>${esc(q)}</li>`).join("") + `</ul>`;
+  }
+  h += `<p class="small">Rules ${esc(res.safety.rule_version)} · ${esc(res.safety.fired_rules.join(", ") || "no rule fired")}</p>`;
+  add(h, "result" + (emerg ? " emerg" : ""));
+  if (!emerg) add(esc(t("ask")));
+  const box = add("", "opts"); const b=document.createElement("button"); b.type="button"; b.className="ghost"; b.textContent=t("restart"); b.onclick=start; box.appendChild(b);
+}
+
+async function askQuestion(q) {
+  add(esc(q), "msg user");
+  const r = await api("/api/v1/content/ask", {question:q, language:lang(), session_id:sid});
+  let h = esc(r.answer);
+  if (r.reminder) h += `<p class="small">${esc(r.reminder)}</p>`;
+  if (r.cards) h += `<p class="small">${r.cards.map(c=>c.source?`<a href="${esc(c.source)}" target="_blank" rel="noopener">${esc(c.title)}</a>`:esc(c.title)).join(" · ")}<br>${esc(r.disclaimer)}</p>`;
+  add(h, r.type==="emergency" ? "result emerg" : "msg bot");
+}
+
+$("#form").onsubmit = e => { e.preventDefault(); const v=$("#text").value.trim(); if(!v) return; $("#text").value="";
+  finished ? askQuestion(v) : send(null, v, v); };
+$("#lang").onchange = start; $("#country").onchange = start;
+start();
+</script>
+</body>
+</html>

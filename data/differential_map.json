@@ -1,0 +1,24 @@
+{
+  "version": "differential-map-v0.1-draft",
+  "note": "Clinical Review Pack section 4. Rows are checked top to bottom; the first match wins. Max 3 cards.",
+  "max_cards": 3,
+  "rows": [
+    {"id": "M01", "age_group": ["preschool", "school_age"], "main_concern": ["eye_turn", "behaviour_signs"], "onset": ["gradual", "longstanding", "unknown", null],
+     "cards": ["amblyopia", "strabismus"], "level": "APPOINTMENT"},
+    {"id": "M02", "age_group": ["preschool", "school_age"], "main_concern": ["white_pupil"],
+     "cards": [], "cards_pending_doctor": ["congenital_cataract", "retinoblastoma"], "level": "SAME_DAY"},
+    {"id": "M03", "age_group": ["adult", "older_adult"], "main_concern": ["blurred"], "onset": ["gradual", "longstanding", "days", "unknown", null], "history_has": ["diabetes"],
+     "cards": ["diabetic_retinopathy", "cataract"], "level": "APPOINTMENT"},
+    {"id": "M04", "age_group": ["school_age", "adult", "older_adult"], "main_concern": ["blurred"], "onset": ["gradual", "longstanding", "unknown", null], "history_has": ["high_myopia"],
+     "cards": ["myopic_retinopathy", "myopia"], "level": "APPOINTMENT"},
+    {"id": "M05", "age_group": ["school_age"], "main_concern": ["blurred"], "onset": ["gradual", "longstanding", "unknown", null],
+     "cards": ["myopia", "astigmatism"], "level": "APPOINTMENT"},
+    {"id": "M06", "age_group": ["older_adult"], "main_concern": ["blurred"], "onset": ["gradual", "longstanding", "unknown", null],
+     "cards": ["cataract", "amd", "epiretinal_membrane"], "level": "APPOINTMENT"},
+    {"id": "M07", "age_group": ["adult"], "main_concern": ["blurred"], "onset": ["gradual", "longstanding", "unknown", null],
+     "cards": ["myopia", "astigmatism", "cataract"], "level": "APPOINTMENT"},
+    {"id": "M08", "main_concern": ["blurred"], "onset": ["gradual", "longstanding"],
+     "cards": ["awareness_gradual_loss"], "level": "APPOINTMENT"}
+  ],
+  "never_from_general_symptoms": ["stargardt", "retinitis_pigmentosa", "glaucoma", "retinoblastoma"]
+}

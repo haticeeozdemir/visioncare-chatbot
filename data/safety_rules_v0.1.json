@@ -1,0 +1,55 @@
+{
+  "version": "ophthalmology-triage-v0.1",
+  "status": "DRAFT - needs doctor approval",
+  "approved_by": null,
+  "effective_date": null,
+  "rules": [
+    {
+      "id": "R01", "level": "EMERGENCY",
+      "description": "Sudden loss or marked drop in vision",
+      "when": {"any": [
+        {"field": "main_concern", "in": ["sudden_loss"]},
+        {"all": [{"field": "main_concern", "in": ["blurred"]}, {"field": "onset", "in": ["sudden"]}]}
+      ]}
+    },
+    {
+      "id": "R02", "level": "EMERGENCY",
+      "description": "Shadow, curtain or new visual field loss",
+      "when": {"any": [{"field": "main_concern", "in": ["curtain"]}, {"field": "associated", "has_any": ["curtain"]}]}
+    },
+    {
+      "id": "R03", "level": "EMERGENCY",
+      "description": "New flashes together with new floaters",
+      "when": {"any": [
+        {"all": [{"field": "associated", "has_any": ["new_flashes"]}, {"field": "associated", "has_any": ["new_floaters"]}]},
+        {"all": [{"field": "main_concern", "in": ["flashes_floaters"]}, {"field": "onset", "in": ["sudden", "days"]}]}
+      ]}
+    },
+    {
+      "id": "R04", "level": "EMERGENCY",
+      "description": "Eye injury or chemical exposure",
+      "when": {"any": [{"field": "main_concern", "in": ["trauma_chemical"]}, {"field": "associated", "has_any": ["recent_injury", "chemical"]}]}
+    },
+    {
+      "id": "R05", "level": "EMERGENCY",
+      "description": "Severe eye pain, or pain with a clear change in vision",
+      "when": {"any": [
+        {"field": "associated", "has_any": ["severe_pain"]},
+        {"all": [
+          {"any": [{"field": "main_concern", "in": ["pain"]}, {"field": "associated", "has_any": ["pain"]}]},
+          {"any": [{"field": "main_concern", "in": ["blurred", "sudden_loss", "double", "curtain"]}, {"field": "associated", "has_any": ["vision_change"]}]}
+        ]}
+      ]}
+    },
+    {
+      "id": "R06", "level": "SAME_DAY",
+      "description": "Child: white reflection in the pupil (level to be decided by doctor)",
+      "when": {"all": [{"field": "age_group", "in": ["preschool", "school_age"]}, {"any": [{"field": "main_concern", "in": ["white_pupil"]}, {"field": "associated", "has_any": ["white_pupil"]}]}]}
+    },
+    {
+      "id": "R07", "level": "SAME_DAY",
+      "description": "Child: newly started eye turn (level to be decided by doctor)",
+      "when": {"all": [{"field": "age_group", "in": ["preschool", "school_age"]}, {"field": "main_concern", "in": ["eye_turn"]}, {"field": "onset", "in": ["sudden", "days"]}]}
+    }
+  ]
+}

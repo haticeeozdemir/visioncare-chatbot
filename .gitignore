@@ -1,0 +1,13 @@
+# generated embedding index (rebuilt automatically from data/cards.json)
+.cache/
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# secrets (ANTHROPIC_API_KEY etc.)
+.env
+.env.*

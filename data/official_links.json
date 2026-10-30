@@ -1,0 +1,12 @@
+{
+  "version": "links-v0.1",
+  "TR": {
+    "emergency": {"number": "112", "status": "Turkish team to confirm"},
+    "appointments": [{"name": "MHRS", "url": "https://www.mhrs.gov.tr", "status": "Turkish team to confirm"}]
+  },
+  "GR": {
+    "emergency": {"number": "112", "status": "Confirmed on gov.gr national emergency numbers page"},
+    "ambulance": {"number": "166", "status": "NOT confirmed on an official page - Greek team to confirm"},
+    "appointments": [{"name": "finddoctors (gov.gr)", "url": "https://www.gov.gr/en/services/1002246/finddoctors", "status": "Official; primary care only. Eye-specialist route to be confirmed by Greek team"}]
+  }
+}

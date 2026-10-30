@@ -1,0 +1,10 @@
+fastapi>=0.110
+uvicorn>=0.29
+anthropic>=0.40
+pydantic>=2
+# RAG retrieval
+faiss-cpu
+sentence-transformers
+# tests
+pytest
+httpx
